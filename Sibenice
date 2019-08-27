@@ -1,0 +1,28 @@
+import random
+
+def zamen(slovo, pozice, nahrada):
+	zacatek = slovo[ :pozice]
+	prostredek = nahrada
+	konec = slovo[pozice+1: ]
+	return zacatek + prostredek + konec
+
+moznosti = ('trávník', 'stromek', 'stavení')
+slovo = random.choice(moznosti)
+šibenice = "*"*len(slovo)
+pocet_pokusu = 0
+
+print(šibenice)
+
+while šibenice != slovo:
+	vstup = str(input("Zadej písmeno šibenice: "))
+	if vstup in slovo:
+		šibenice = zamen(šibenice, slovo.index(vstup), vstup)
+		print(šibenice)
+	else:
+		pocet_pokusu = pocet_pokusu + 1
+		print("Špatně, máš ", pocet_pokusu, "špatných pokusů")
+		if pocet_pokusu > 8:
+			print("Konec hry! Vyčerpal jsi možný počet pokusů!")
+			break
+if šibenice == slovo:
+	print("Gratuluji stihl jsi dobít šibenici dřív než jsi vyčerpal pokusy. Slovo je", šibenice, ".")
